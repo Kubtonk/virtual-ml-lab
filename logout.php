@@ -1,0 +1,13 @@
+<?php 
+session_start();
+unset($_SESSION['adminid']);
+session_destroy();
+$cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+    foreach($cookies as $cookie) {
+        $parts = explode('=', $cookie);
+        $name = trim($parts[0]);
+        setcookie($name, '', time()-1000);
+        setcookie($name, '', time()-1000, '/');
+    }
+header("Location: index.html");
+?>
