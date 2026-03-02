@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Урок 2 — Запуск VM</title>
+<link rel="stylesheet" href="../style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;">
+  <div style="max-width:900px;margin:32px auto;padding:24px;background:#121212;border-radius:8px;">
+    <a href="../index.html">← Назад</a>
+    <h1>Лабораторная 2 — Развёртывание виртуальной машины</h1>
+
+    <h3>Цели</h3>
+    <ul>
+      <li>Создать простую VM (Ubuntu) в облаке или локально (VirtualBox).</li>
+      <li>Подключиться по SSH и выполнить базовую настройку.</li>
+    </ul>
+
+    <h3>Шаги (вариант для Ubuntu VM)</h3>
+    <ol>
+      <li>Создай VM на провайдере (DigitalOcean, AWS EC2 или локально в VirtualBox).</li>
+      <li>Выбери образ Ubuntu 22.04 (или 20.04).</li>
+      <li>Открой SSH (в случае публичного провайдера — добавь ключ или временный пароль).</li>
+      <li>Подключись: <code>ssh user@IP_ADDRESS</code>.</li>
+      <li>Обнови систему: <code>sudo apt update && sudo apt upgrade -y</code>.</li>
+      <li>Установи curl и nginx: <code>sudo apt install -y curl nginx</code>.</li>
+      <li>Проверь, что nginx запущен: <code>sudo systemctl status nginx</code>, открой IP в браузере.</li>
+    </ol>
+
+    <h3>Команды (копировать)</h3>
+    <pre style="background:#000;padding:12px;border-radius:6px;color:#8cf;">
+ssh root@IP_ADDRESS
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y nginx
+sudo systemctl enable --now nginx
+curl -I http://localhost
+    </pre>
+
+    <h3>Ожидаемый результат</h3>
+    <p>На публичном IP должна открываться страница nginx (по умолчанию). Сделай скриншот и положи в папку `lesson2_results/`.</p>
+
+    <hr>
+    <p style="color:#bbb">Если работаешь локально с VirtualBox — используй проброс порта (например 8080 → 80) или host-only сеть.</p>
+  </div>
+</body>
+</html>

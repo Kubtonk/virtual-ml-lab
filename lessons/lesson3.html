@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Урок 3 — Деплой статического сайта</title>
+<link rel="stylesheet" href="../style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;">
+  <div style="max-width:900px;margin:32px auto;padding:24px;background:#121212;border-radius:8px;">
+    <a href="../index.html">← Назад</a>
+    <h1>Лабораторная 3 — Развёртывание статического сайта</h1>
+
+    <h3>Цели</h3>
+    <ul>
+      <li>Разместить статический сайт на nginx (VM из урока 2).</li>
+      <li>Настроить базовую структуру сайта и проверить доступность по IP.</li>
+    </ul>
+
+    <h3>Шаги</h3>
+    <ol>
+      <li>Скопируй файлы сайта на сервер (scp или rsync):<br>
+        <code>scp -r ./site_files root@IP_ADDRESS:/var/www/my-site</code>
+      </li>
+      <li>Создай nginx конфиг: <code>/etc/nginx/sites-available/my-site</code> (пример ниже).</li>
+      <li>Включи сайт и перезагрузи nginx: <code>sudo ln -s /etc/nginx/sites-available/my-site /etc/nginx/sites-enabled/ && sudo nginx -t && sudo systemctl reload nginx</code>.</li>
+    </ol>
+
+    <h3>Пример nginx конфигурации</h3>
+    <pre style="background:#000;padding:12px;border-radius:6px;color:#8cf;">
+server {
+    listen 80;
+    server_name _;
+    root /var/www/my-site;
+    index index.html;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+    </pre>
+
+    <h3>Проверка</h3>
+    <p>Открой IP сервера в браузере — должен показываться твой сайт. Сделай скриншот и помести его в `lesson3_results/`.</p>
+  </div>
+</body>
+</html>

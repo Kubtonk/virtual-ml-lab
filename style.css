@@ -589,3 +589,163 @@ body {
   top:5px;
   right:5px;
 }
+
+/* =========================
+   Цветовой оверрайд — спокойная палитра
+   ========================= */
+
+   :root{
+    --bg: #f6f7fb;          /* фон страницы */
+    --panel: #ffffff;       /* панели/карточки */
+    --text: #16202a;        /* основной текст */
+    --muted: #6b7280;       /* второстепенный текст */
+    --accent: #2563eb;      /* основной акцент (синие) */
+    --accent-2: #06b6d4;    /* вторичный акцент (бирюзовый) */
+    --border: #e6e9ef;      /* границы */
+    --hero-grad-a: #2563eb; /* геро-градиент начало */
+    --hero-grad-b: #06b6d4; /* геро-градиент конец */
+    --card-shadow: 0 10px 20px rgba(16,24,40,0.06);
+  }
+  
+  /* общий фон и текст */
+  body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* подложки/панели */
+  .intro-sec,
+  .home-hiw,
+  .hero,
+  .block-list li,
+  .block-list li .icon-hldr,
+  .w3-modal-content,
+  footer.footer-distributed {
+    background: var(--panel) !important;
+    color: var(--text) !important;
+    box-shadow: var(--card-shadow) !important;
+    border-radius: 8px !important;
+  }
+  
+  /* замена яркого градиента bottom-header */
+  .bottom-header {
+    background: linear-gradient(90deg, rgba(37,99,235,1) 0%, rgba(6,182,212,1) 100%) !important;
+    height: 6px;
+  }
+  
+  /* navbar links hover */
+  .navbar-bottom .nav-links li:hover > a,
+  .navbar-bottom .nav-links li a.active {
+    background: var(--panel) !important;
+    color: var(--accent) !important;
+  }
+  
+  /* hero gradient — спокойный синий->бирюзовый */
+  .hero-description-bk {
+    background-image: linear-gradient(135deg, var(--hero-grad-a), var(--hero-grad-b)) !important;
+    opacity: 0.98;
+    transform: skew(18deg, -9deg) !important;
+  }
+  
+  /* текст в герое */
+  .hero-description, .hero-date {
+    color: #fff !important;
+    font-weight: 700 !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  
+  /* кнопки */
+  .hero-btn,
+  button,
+  .btn {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transition: transform .12s ease, background .12s ease;
+  }
+  .hero-btn a, .btn {
+    color: #fff !important;
+  }
+  .hero-btn a:hover, button:hover, .btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg,var(--accent),var(--accent-2)) !important;
+  }
+  
+  /* искореняем яркие пурпурные и розовые */
+  .intro-sec,
+  .hero-description-bk,
+  .sub_links,
+  .block-list li .icon-hldr svg {
+    /* уже переопределено выше — если где-то остался розовый, принудительно задаём синий/бирюзовый */
+    color: var(--accent) !important;
+    fill: var(--accent) !important;
+  }
+  
+  /* карточки (hero) — фон и тень */
+  .hero {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)) !important;
+    border: 1px solid var(--border) !important;
+  }
+  
+  /* footer — светлее, аккуратнее */
+  footer.footer-distributed {
+    background: transparent !important;
+    color: var(--muted) !important;
+    box-shadow: none !important;
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  
+  /* ссылки в футере */
+  footer.footer-distributed a {
+    color: var(--muted);
+  }
+  footer.footer-distributed a:hover {
+    color: var(--accent);
+  }
+  
+  /* уменьшение яркости и контраста для иконок социальных сетей */
+  .footer-right a i {
+    color: var(--muted) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  
+  /* inputs / form styles — сделаем нейтральными */
+  .form__input, input[type="text"], input[type="password"] {
+    background: #fbfdff !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+  }
+  
+  /* modal header (w3-modal) */
+  .w3-modal-content .w3-container h2 {
+    color: var(--text) !important;
+  }
+  .w3-modal-content header.w3-container {
+    background: linear-gradient(90deg,var(--accent),var(--accent-2)) !important;
+    color: #fff !important;
+  }
+  
+  /* subtle adjustments for small screens */
+  @media only screen and (max-width: 786px) {
+    .hero-description { left: 120px !important; }
+    .hero-logo { left: 20px !important; }
+  }
+  
+  /* selection color */
+  ::selection { background: var(--accent); color: #fff; }
+  
+  /* override buggy fixed icon in .btn i:before (если нужно) */
+  .btn i:before {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
